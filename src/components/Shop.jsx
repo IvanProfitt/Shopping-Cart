@@ -2,7 +2,6 @@ import NavBar from "./NavBar";
 import Product from "./Product";
 
 const Shop = () => {
-    // Assuming you have a list of product IDs to fetch and display
     const productIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     return (
