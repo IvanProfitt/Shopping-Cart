@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import GetProduct from './GetProduct';
 import NavBar from './NavBar';
+import { CartContext } from './CartLogic';
 
 // Styled Components for ProductPage
 const ProductContainer = styled.div`
@@ -79,27 +80,28 @@ const AddToCartButton = styled.button`
   }
 `;
 
-// ProductPage Component
 const ProductPage = () => {
   const { id } = useParams();
   const { productInfo, error, loading } = GetProduct(id);
+  const { addToCart } = useContext(CartContext);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <ProductContainer>
-        <NavBar/>
+      <NavBar/>
       <ProductWrapper>
         <ImageContainer>
           <ProductImage src={productInfo.image} alt={productInfo.title} />
         </ImageContainer>
-
         <DetailsContainer>
           <ProductTitle>{productInfo.title}</ProductTitle>
           <ProductPrice>Price: ${productInfo.price}</ProductPrice>
           <ProductDescription>{productInfo.description}</ProductDescription>
-          <AddToCartButton>Add to Cart</AddToCartButton>
+          <AddToCartButton onClick={() => addToCart(productInfo)}>
+            Add to Cart
+          </AddToCartButton>
         </DetailsContainer>
       </ProductWrapper>
     </ProductContainer>

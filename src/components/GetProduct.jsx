@@ -1,24 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import CartLogic from "./CartLogic";
+
+
+
 
 const GetProduct = (id) => {
-  const initialProduct = {
-    price: "-1",
-    id: "-1",
-    title: "",
-    description: "",
-    image: "",
-    rating: "-1",
-    ratingCount: "-1",
-  };
+  useContext(CartLogic);
 
-  const [productInfo, setProductInfo] = useState(initialProduct);
+
+  const [productInfo, setProductInfo] = useState(CartLogic.initialProduct);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-
-
+    console.log(`Fetching product ${id}`);
 
     fetch(`https://fakestoreapi.com/products/${id}`, { mode: 'cors' })
       .then((response) => {
@@ -28,6 +24,7 @@ const GetProduct = (id) => {
         return response.json();
       })
       .then((data) => {
+        console.log(`Fetched product ${id}:`, data);
         setProductInfo({
           price: data.price,
           title: data.title,
