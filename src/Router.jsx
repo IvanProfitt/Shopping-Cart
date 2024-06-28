@@ -4,10 +4,12 @@ import App from './App';
 import Cart from './components/Cart';
 import Shop from './components/Shop';
 import ProductPage from './components/ProductPage';
+import Navbar from './components/NavBar';
 
 const AppRouter = () => {
     return (
         <Router>
+            <Navbar />
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/cart" element={<Cart />} />

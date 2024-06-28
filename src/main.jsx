@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import AppRouter from './Router'
 import CartProvider from './components/CartLogic'
-import Cart from './components/Cart'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

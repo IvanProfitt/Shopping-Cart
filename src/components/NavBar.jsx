@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useState, useContext } from "react";
-import CartLogic from "./CartLogic";
+import {  useContext } from "react";
+import { CartContext } from "./CartLogic";
 
 
 
@@ -50,23 +50,18 @@ const Icon = styled.img`
   height: 30px;
 `
 
-function NavBar() {
-    useContext(CartLogic);
-
+const Navbar = () => {
+  const { cartItems } = useContext(CartContext);
 
   return (
     <NavbarContainer>
       <NavLinksContainer>
         <NavLinks to="/">Home</NavLinks>
         <NavLinks to="/shop">Shop</NavLinks>
-        <p>{CartLogic.cartItems}</p>
-
+        <p>{cartItems.length}</p>
       </NavLinksContainer>
-      <CartLink to="/cart">
-        <Icon src="/src/assets/shopping-cart.png" />
-      </CartLink>
     </NavbarContainer>
   );
-}
+};
 
-export default NavBar;
+export default Navbar;
