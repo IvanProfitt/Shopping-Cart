@@ -14,7 +14,6 @@ const GetProduct = (id) => {
 
   useEffect(() => {
     setLoading(true);
-    console.log(`Fetching product ${id}`);
 
     fetch(`https://fakestoreapi.com/products/${id}`, { mode: 'cors' })
       .then((response) => {
@@ -24,7 +23,8 @@ const GetProduct = (id) => {
         return response.json();
       })
       .then((data) => {
-        console.log(`Fetched product ${id}:`, data);
+
+
         setProductInfo({
           price: data.price,
           title: data.title,
@@ -33,6 +33,7 @@ const GetProduct = (id) => {
           image: data.image,
           rating: data.rating.rate,
           ratingCount: data.rating.count,
+          amount:0,
         });
       })
       .catch((error) => {

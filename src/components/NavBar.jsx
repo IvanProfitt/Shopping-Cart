@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {  useContext } from "react";
+import { useContext } from "react";
 import { CartContext } from "./CartLogic";
-
-
-
-
 
 const NavbarContainer = styled.nav`
   background-color: #333;
@@ -17,7 +13,7 @@ const NavbarContainer = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  box-sizing:border-box;
+  box-sizing: border-box;
 `;
 
 const NavLinksContainer = styled.div`
@@ -48,17 +44,23 @@ const CartLink = styled(Link)`
 const Icon = styled.img`
   width: 30px;
   height: 30px;
-`
+`;
 
 const Navbar = () => {
   const { cartItems } = useContext(CartContext);
+
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+
 
   return (
     <NavbarContainer>
       <NavLinksContainer>
         <NavLinks to="/">Home</NavLinks>
         <NavLinks to="/shop">Shop</NavLinks>
-        <p>{cartItems.length}</p>
+        <p>{totalQuantity}</p>
+        <CartLink to="/cart">
+          <Icon src="/shopping-cart.png" alt="Shopping Cart" />
+        </CartLink>
       </NavLinksContainer>
     </NavbarContainer>
   );
