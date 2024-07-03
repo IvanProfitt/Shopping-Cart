@@ -13,6 +13,8 @@ function Cart() {
     decrementQuantity(productId);
   };
 
+  const totalPrice = cartItems.reduce((total, item) => total + (item.price*item.quantity), 0);
+
   return (
     <>
       <NavBar />
@@ -21,11 +23,14 @@ function Cart() {
         <div key={item.id}>
           <h1>{item.title}</h1>
           <img style={{ width: '50px' }} src={item.image} alt={item.title} />
+          <p>{item.price}</p>
           <button onClick={() => handleDecrement(item.id)}>-</button>
           <input type='text' value={item.quantity} readOnly />
           <button onClick={() => handleIncrement(item.id)}>+</button>
         </div>
       ))}
+    <p>Total: {totalPrice}</p>
+    <button>Check Out</button>
     </>
   );
 }

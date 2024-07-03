@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { CartContext } from "./CartLogic";
 
 const NavbarContainer = styled.nav`
-  background-color: #333;
+  background-color: white;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -18,15 +18,19 @@ const NavbarContainer = styled.nav`
 
 const NavLinksContainer = styled.div`
   display: flex;
+  width:95%;
   align-items: center;
+  justify-content:space-between;
 `;
 
 const NavLinks = styled(Link)`
-  color: #fff;
+  color: black;
   text-decoration: none;
   padding: 10px 15px;
   margin: 0 5px;
   font-size: 18px;
+  transition: 0.3s;
+
 
   &:hover {
     background-color: #555;
@@ -37,7 +41,7 @@ const NavLinks = styled(Link)`
 const CartLink = styled(Link)`
   display: flex;
   align-items: center;
-  color: #fff;
+  color: black;
   text-decoration: none;
 `;
 
@@ -55,12 +59,16 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <NavLinksContainer>
+        <div>
         <NavLinks to="/">Home</NavLinks>
         <NavLinks to="/shop">Shop</NavLinks>
+        </div>
+        <div style={{display:'flex'}}>
         <p>{totalQuantity}</p>
         <CartLink to="/cart">
           <Icon src="/shopping-cart.png" alt="Shopping Cart" />
         </CartLink>
+        </div>
       </NavLinksContainer>
     </NavbarContainer>
   );

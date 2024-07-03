@@ -3,23 +3,20 @@ import GetProduct from "./GetProduct";
 import { Link } from "react-router-dom";
 
 const ProductCard = styled.div`
-  background-color: #f2f2f2;
-  border: 1px solid #e5e5e5;
+  background-color: white;
   border-radius: 8px;
-  overflow: hidden;
+  padding:30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
-
   &:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
   }
 `;
 
 const ProductImage = styled.img`
-  width: 100%;
-  height: auto;
+  height:100%;
+  width:100%;
   display: block;
-  border-bottom: 1px solid #ddd;
 `;
 
 const ProductInfo = styled.div`
@@ -27,6 +24,7 @@ const ProductInfo = styled.div`
 `;
 
 const ProductTitle = styled.h3`
+  text-decoration: none;
   font-size: 18px;
   margin-bottom: 8px;
 `;
@@ -45,15 +43,16 @@ const Product = ({ id }) => {
 
   return (
     {loading},
+    <Link to={`/shop/${productInfo.id}`} style={{textDecoration:'none', color:'black'}}>
     <ProductCard>
-      <Link to={`/shop/${productInfo.id}`}>
+    <ProductTitle>{productInfo.title}</ProductTitle>
         <ProductImage src={productInfo.image} alt={productInfo.title} />
         <ProductInfo>
-          <ProductTitle>{productInfo.title}</ProductTitle>
           <ProductPrice>${productInfo.price}</ProductPrice>
         </ProductInfo>
-      </Link>
+
     </ProductCard>
+    </Link>
   );
 };
 
